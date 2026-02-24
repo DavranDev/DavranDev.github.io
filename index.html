@@ -203,23 +203,23 @@
         <h2>Experience</h2>
         
         <div class="item">
-            <h3>Research Assistant — NLP & Evaluation</h3>
-            <div class="meta">IGVC Lab, Texas A&M · May 2025 – Present</div>
+            <h3>Graduate Researcher</h3>
+            <div class="meta">Texas A&M University · College Station, TX · May 2025 – Present</div>
             <ul>
-                <li>Defined evaluation metrics (Precision@k, MRR, groundedness) and built a test harness to measure retrieval and answer quality for an educational Q&A system.</li>
-                <li>Conducted error analysis to categorize failure modes (retrieval vs. reasoning vs. formatting), prioritizing improvements that lifted answer accuracy by 18%.</li>
-                <li>Analyzed chunking strategies and embedding models; identified optimal configuration through systematic A/B comparisons on held-out question sets.</li>
-                <li>Created dashboards to track latency (P50/P95), token costs, and quality metrics over time for ongoing monitoring.</li>
+                <li>Engineered a scalable data retrieval and question-answering pipeline processing 1000+ documents (PDFs, slides, notes) using Python, LangChain, and vector databases (Chroma), reducing information retrieval time by 70% for research teams.</li>
+                <li>Designed and implemented NLP-driven text analysis workflows utilizing semantic search, embedding models, and machine learning techniques to extract structured insights from large volumes of unstructured academic data.</li>
+                <li>Built a multi-agent data processing framework coordinating specialized modules for content synthesis, quality validation, and refinement across multimodal data sources, improving output accuracy and consistency.</li>
+                <li>Developed FastAPI microservice with API integrations (Google Calendar, Canvas) to automate data-driven scheduling recommendations, demonstrating requirements analysis and end-to-end solution design.</li>
             </ul>
         </div>
         
         <div class="item">
             <h3>Data Science Fellow</h3>
-            <div class="meta">Fellowship.ai · Jan 2022 – Apr 2022</div>
+            <div class="meta">Fellowship.ai · remote · Jan 2022 – Jun 2022</div>
             <ul>
-                <li>Built a classification model for spinal implant identification in X-rays; improved accuracy by 15% through error analysis and targeted data augmentation.</li>
-                <li>Performed exploratory analysis on imaging artifacts and device variability to inform preprocessing decisions.</li>
-                <li>Documented model performance across patient subgroups to identify bias risks and edge cases.</li>
+                <li>Built an end-to-end customer churn prediction pipeline on 50K+ subscriber records, engineering 40+ features from usage patterns, billing history, and engagement metrics, applying mutual information-based feature selection and LASSO regularization to reduce dimensionality and mitigate overfitting.</li>
+                <li>Trained and benchmarked Logistic Regression, Random Forest, XGBoost, and LightGBM classifiers using stratified 10-fold cross-validation, optimizing hyperparameters via Bayesian search (Optuna) and evaluating with precision-recall AUC and calibrated probability thresholds to handle 8:1 class imbalance.</li>
+                <li>Delivered interpretable risk scores using SHAP value analysis, identifying top churn drivers (contract type, tenure, monthly charges) and presenting actionable retention strategies to stakeholders, reducing projected churn rate by 18% in A/B simulation.</li>
             </ul>
         </div>
     </section>
@@ -228,9 +228,9 @@
         <h2>Projects</h2>
         
         <div class="item">
-            <h3><a href="https://github.com/DavranDev/LLM-based-RecSys">Recommendation System - Preference Optimization</a></h3>
-            <p>Built an LLM-based recommender and designed offline evaluation framework. Defined success metrics (HR@1 and MRR), implemented careful train/test splits to prevent data leakage, and ran ablation studies on negative sampling strategies. Achieved +15% lift over baseline.</p>
-            <div class="tech">Python · PyTorch · Evaluation Design · Offline Metrics</div>
+            <h3><a href="https://github.com/DavranDev/LLM-based-RecSys">LLM-based RecSys via Preference-Based Optimization</a></h3>
+            <p>Fine-tuned the Qwen-2.5-7B model using LoRA for recommender systems, aligning LLM outputs with user preferences on the Movielens-32M and Goodreads datasets. Implemented DPO, ORPO, and KTO optimization techniques evaluated using Hit Ratio@1 and MRR metrics. ORPO boosted Hit Ratio@1 by up to 15% and MRR by up to 9% over the baseline.</p>
+            <div class="tech">Python · PyTorch · HuggingFace · LoRA · DPO · ORPO · KTO</div>
         </div>
 
         <div class="item">
@@ -246,9 +246,9 @@
         </div>
         
         <div class="item">
-            <h3><a href="https://github.com/DavranDev/LLM-Driven-Podcast-Generator">Content Generation Pipeline</a></h3>
-            <p>Developed a system to convert documents into podcast-style audio. Defined quality metrics (topic coverage, factual grounding) and built evaluation checks to ensure generated content accurately reflects source material.</p>
-            <div class="tech">Python · LangChain · Content Analysis</div>
+            <h3><a href="https://github.com/DavranDev/LLM-Driven-Podcast-Generator">LLM Driven Podcast Generator</a></h3>
+            <p>Architected an autonomous, end-to-end content pipeline that orchestrates specialized LangChain agents powered by hybrid OpenAI and Groq models to transform unstructured data (PDF/PPTX) into naturalistic, multi-host dialogue. Implemented a production-grade audio synthesis engine using Neural TTS and DSP techniques, automating professional mixing, noise reduction, and dynamic range compression to achieve broadcast-quality output.</p>
+            <div class="tech">Python · PyTorch · LangChain · Pydub · OpenAI TTS</div>
         </div>
     </section>
 
@@ -256,23 +256,23 @@
         <h2>Skills</h2>
         
         <div class="skills-group">
-            <h3>Analytics & Statistics</h3>
-            <div class="skills-list">SQL (joins, windows, CTEs), A/B testing & experimentation, Statistical testing (t-test, chi-square, bootstrap), Cohort & funnel analysis, KPI design, Time series & forecasting, Regression analysis</div>
+            <h3>Languages</h3>
+            <div class="skills-list">Python, SQL (PostgreSQL), MATLAB</div>
         </div>
-        
+
         <div class="skills-group">
-            <h3>Machine Learning</h3>
-            <div class="skills-list">Supervised learning (classification, regression), Model evaluation & validation, Feature engineering, Error analysis, Cross-validation, Hyperparameter tuning</div>
+            <h3>ML / NLP / CV</h3>
+            <div class="skills-list">PyTorch, TensorFlow/Keras, HuggingFace Transformers, LangChain, SpaCy, NLTK, OpenCV, YOLO, Scikit-learn, MLOps/LLMOps</div>
         </div>
-        
+
         <div class="skills-group">
-            <h3>NLP & LLM Evaluation</h3>
-            <div class="skills-list">RAG systems, Retrieval metrics (Precision@k, MRR), Groundedness evaluation, Prompt engineering, Text classification, Embeddings</div>
+            <h3>Data & Backend</h3>
+            <div class="skills-list">FastAPI, Pandas, SciPy, Chroma, FAISS, PostgreSQL, MongoDB</div>
         </div>
-        
+
         <div class="skills-group">
-            <h3>Tools</h3>
-            <div class="skills-list">Python (pandas, numpy, scikit-learn, statsmodels), SQL, Git, PyTorch/Tensorflow, Docker, AWS (S3, EC2)</div>
+            <h3>Infrastructure</h3>
+            <div class="skills-list">Docker, Git, AWS (EC2), GCP (Cloud Run), Linux</div>
         </div>
     </section>
 
