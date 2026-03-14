@@ -4,306 +4,735 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Davran Damkhan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --ink: #0f1419;
+            --paper: #fafaf8;
+            --mid: #5c6370;
+            --light: #9ca3af;
+            --accent: #2563eb;
+            --accent-soft: #dbeafe;
+            --rule: #e5e7eb;
+            --warm: #f9f7f4;
         }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #fff;
-            max-width: 750px;
-            margin: 0 auto;
-            padding: 60px 20px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 400;
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
         }
-        
-        .profile {
+
+        /* === GRAIN OVERLAY === */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        /* === HEADER / HERO === */
+        .hero {
+            padding: 80px 0 50px;
             display: flex;
             align-items: flex-start;
-            gap: 30px;
-            margin-bottom: 30px;
+            gap: 36px;
         }
-        
-        .profile-image {
-            width: 150px;
-            height: 150px;
+
+        .hero-photo {
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             object-fit: cover;
             flex-shrink: 0;
+            border: 3px solid var(--rule);
+            filter: grayscale(15%);
+            transition: filter 0.4s ease;
         }
-        
-        .profile-text {
-            flex: 1;
+
+        .hero-photo:hover {
+            filter: grayscale(0%);
         }
-        
-        h1 {
-            font-size: 1.7rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: #1a1a1a;
+
+        .hero-text { flex: 1; }
+
+        .hero-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            color: var(--ink);
         }
-        
-        .bio {
-            color: #444;
+
+        .hero-title {
             font-size: 0.95rem;
-            margin-bottom: 15px;
+            font-weight: 500;
+            color: var(--accent);
+            margin-top: 6px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
         }
-        
-        .nav-links {
+
+        .hero-bio {
+            margin-top: 14px;
+            font-size: 0.95rem;
+            color: var(--mid);
+            line-height: 1.7;
+            max-width: 540px;
+        }
+
+        .hero-links {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px 18px;
+            gap: 8px;
+            margin-top: 18px;
         }
-        
-        .nav-links a {
-            color: #0066cc;
+
+        .hero-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--mid);
             text-decoration: none;
-            font-size: 0.9rem;
+            padding: 5px 12px;
+            border: 1px solid var(--rule);
+            border-radius: 100px;
+            transition: all 0.25s ease;
         }
-        
-        .nav-links a:hover {
-            text-decoration: underline;
+
+        .hero-links a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: var(--accent-soft);
         }
-        
-        .section {
-            margin-top: 35px;
+
+        .hero-links a svg {
+            width: 13px;
+            height: 13px;
         }
-        
-        .section h2 {
-            font-size: 1.2rem;
-            font-weight: 600;
+
+        /* === NAV === */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(250, 250, 248, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--rule);
+            padding: 0 28px;
+        }
+
+        nav .nav-inner {
+            max-width: 780px;
+            margin: 0 auto;
+            display: flex;
+            gap: 28px;
+            overflow-x: auto;
+        }
+
+        nav a {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--light);
+            text-decoration: none;
+            padding: 14px 0;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--ink);
+            border-bottom-color: var(--accent);
+        }
+
+        /* === SECTIONS === */
+        section {
+            padding: 50px 0 10px;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--light);
+            margin-bottom: 28px;
+        }
+
+        /* === EXPERIENCE CARDS === */
+        .exp-card {
+            position: relative;
+            padding: 24px 0;
+            border-top: 1px solid var(--rule);
+        }
+
+        .exp-card:last-child {
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .exp-role {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: var(--ink);
+        }
+
+        .exp-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--light);
+        }
+
+        .exp-org {
+            font-size: 0.88rem;
+            color: var(--mid);
             margin-bottom: 12px;
-            color: #1a1a1a;
-            border-bottom: 1px solid #e5e5e5;
-            padding-bottom: 6px;
         }
-        
-        .item {
-            margin-bottom: 18px;
+
+        .exp-org .note {
+            font-style: italic;
+            color: var(--light);
         }
-        
-        .item h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #1a1a1a;
+
+        .exp-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
-        
-        .item h3 a {
-            color: #0066cc;
+
+        .exp-bullets li {
+            font-size: 0.88rem;
+            color: var(--mid);
+            padding-left: 16px;
+            position: relative;
+            line-height: 1.65;
+        }
+
+        .exp-bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.5;
+        }
+
+        /* === PROJECTS === */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .project-card {
+            padding: 22px;
+            border: 1px solid var(--rule);
+            border-radius: 10px;
+            background: var(--warm);
+            transition: all 0.3s ease;
             text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
         }
-        
-        .item h3 a:hover {
-            text-decoration: underline;
+
+        .project-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
+            transform: translateY(-2px);
         }
-        
-        .item .meta {
-            font-size: 0.85rem;
-            color: #666;
+
+        .project-card h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: var(--ink);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .project-card p {
+            font-size: 0.84rem;
+            color: var(--mid);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 14px;
+        }
+
+        .project-tech span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            font-weight: 500;
+            color: var(--accent);
+            background: var(--accent-soft);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .project-arrow {
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-top: 12px;
+            opacity: 0;
+            transform: translateX(-4px);
+            transition: all 0.25s ease;
+        }
+
+        .project-card:hover .project-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* === SKILLS === */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 6px 24px;
+            align-items: baseline;
+        }
+
+        .skill-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 8px 0;
+        }
+
+        .skill-value {
+            font-size: 0.88rem;
+            color: var(--mid);
+            padding: 8px 0;
+            border-top: 1px solid var(--rule);
+        }
+
+        /* === EDUCATION === */
+        .edu-card {
+            padding: 20px 0;
+            border-top: 1px solid var(--rule);
+        }
+
+        .edu-card:last-child {
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .edu-degree {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.08rem;
+            color: var(--ink);
+        }
+
+        .edu-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--light);
+        }
+
+        .edu-school {
+            font-size: 0.88rem;
+            color: var(--mid);
             margin-top: 2px;
         }
-        
-        .item p, .item ul {
+
+        .edu-detail {
+            font-size: 0.84rem;
+            color: var(--light);
+            margin-top: 6px;
+        }
+
+        /* === CONTACT === */
+        .contact-block {
+            padding: 40px 0;
+        }
+
+        .contact-cta {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            color: var(--ink);
+            margin-bottom: 10px;
+            line-height: 1.35;
+        }
+
+        .contact-sub {
             font-size: 0.9rem;
-            color: #555;
-            margin-top: 5px;
+            color: var(--mid);
+            margin-bottom: 22px;
+            max-width: 500px;
         }
-        
-        .item ul {
-            margin-left: 18px;
+
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
-        
-        .item li {
-            margin-bottom: 3px;
-        }
-        
-        .tech {
-            font-size: 0.8rem;
-            color: #888;
-            margin-top: 5px;
-        }
-        
-        .skills-group {
-            margin-bottom: 15px;
-        }
-        
-        .skills-group h3 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 4px;
-        }
-        
-        .skills-list {
-            font-size: 0.9rem;
-            color: #555;
-        }
-        
-        .contact-info {
-            font-size: 0.9rem;
-            color: #555;
-        }
-        
-        .contact-info a {
-            color: #0066cc;
+
+        .contact-grid a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--ink);
             text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid var(--rule);
+            border-radius: 8px;
+            transition: all 0.25s ease;
         }
-        
-        .contact-info a:hover {
-            text-decoration: underline;
+
+        .contact-grid a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-soft);
         }
-        
-        .contact-row {
-            margin-bottom: 4px;
+
+        .contact-grid a svg {
+            width: 15px;
+            height: 15px;
         }
-        
+
+        /* === FOOTER === */
         footer {
-            margin-top: 50px;
-            padding-top: 15px;
-            border-top: 1px solid #e5e5e5;
-            font-size: 0.8rem;
-            color: #999;
+            padding: 30px 0 50px;
+            border-top: 1px solid var(--rule);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--light);
         }
-        
-        @media (max-width: 600px) {
-            .profile {
+
+        /* === ANIMATIONS === */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(16px);
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in:nth-child(1) { animation-delay: 0.05s; }
+        .fade-in:nth-child(2) { animation-delay: 0.12s; }
+        .fade-in:nth-child(3) { animation-delay: 0.19s; }
+        .fade-in:nth-child(4) { animation-delay: 0.26s; }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 640px) {
+            .hero {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
+                padding: 50px 0 30px;
             }
-            .nav-links {
-                justify-content: center;
+            .hero-bio { max-width: 100%; }
+            .hero-links { justify-content: center; }
+            .hero-name { font-size: 1.8rem; }
+            .project-grid { grid-template-columns: 1fr; }
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
             }
+            .skill-label {
+                padding-bottom: 0;
+                border-top: 1px solid var(--rule);
+                padding-top: 12px;
+            }
+            .skill-value {
+                border-top: none;
+                padding-top: 2px;
+                padding-bottom: 12px;
+            }
+            .exp-header { flex-direction: column; gap: 2px; }
+            .edu-header { flex-direction: column; gap: 2px; }
         }
     </style>
 </head>
 <body>
-    <div class="profile">
-        <img src="img.png" alt="Davran Damkhan" class="profile-image">
-        <div class="profile-text">
-            <h1>Davran Damkhan</h1>
-            <p class="bio">
-                Data Science MS student at Texas A&M. I turn messy data (documents, logs, user behavior) into insights and models that drive decisions. My work spans NLP/LLM evaluation, recommender systems, and runnning A/B tests, always with a focus on defining the right metrics, running rigorous analysis and communicating findings clearly.
-            </p>
-            <nav class="nav-links">
-                <a href="#experience">Experience</a>
-                <a href="#projects">Projects</a>
-                <a href="#skills">Skills</a>
-                <a href="#education">Education</a>
-                <a href="#contact">Contact</a>
-            </nav>
-        </div>
+    <div class="container">
+        <header class="hero">
+            <img src="img.png" alt="Davran Damkhan" class="hero-photo">
+            <div class="hero-text">
+                <h1 class="hero-name fade-in">Davran Damkhan</h1>
+                <div class="hero-title fade-in">Data Scientist</div>
+                <p class="hero-bio fade-in">
+                    Data Science MS student at Texas A&M. I build ML systems that work — from retrieval pipelines and recommender models to neuro-symbolic scheduling. My focus: define the right metric, run rigorous experiments, and ship models that inform real decisions.
+                </p>
+                <div class="hero-links fade-in">
+                    <a href="mailto:davrandamkhan@tamu.edu">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/davran-damkhan-5a0701156/" target="_blank">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/DavranDev" target="_blank">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                        GitHub
+                    </a>
+                    <a href="tel:979-326-8680">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        979-326-8680
+                    </a>
+                </div>
+            </div>
+        </header>
     </div>
 
-    <section class="section" id="experience">
-        <h2>Experience</h2>
-        
-        <div class="item">
-            <h3>Graduate Researcher</h3>
-            <div class="meta">Texas A&M University · College Station, TX · May 2025 – Present</div>
-            <ul>
-                <li>Engineered a scalable data retrieval and question-answering pipeline processing 1000+ documents (PDFs, slides, notes) using Python, LangChain, and vector databases (Chroma), reducing information retrieval time by 70% for research teams.</li>
-                <li>Designed and implemented NLP-driven text analysis workflows utilizing semantic search, embedding models, and machine learning techniques to extract structured insights from large volumes of unstructured academic data.</li>
-                <li>Built a multi-agent data processing framework coordinating specialized modules for content synthesis, quality validation, and refinement across multimodal data sources, improving output accuracy and consistency.</li>
-                <li>Developed FastAPI microservice with API integrations (Google Calendar, Canvas) to automate data-driven scheduling recommendations, demonstrating requirements analysis and end-to-end solution design.</li>
-            </ul>
+    <nav>
+        <div class="nav-inner">
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#education">Education</a>
+            <a href="#contact">Contact</a>
         </div>
-        
-        <div class="item">
-            <h3>Data Science Fellow</h3>
-            <div class="meta">Fellowship.ai · remote · Jan 2022 – Jun 2022</div>
-            <ul>
-                <li>Built an end-to-end customer churn prediction pipeline on 50K+ subscriber records, engineering 40+ features from usage patterns, billing history, and engagement metrics, applying mutual information-based feature selection and LASSO regularization to reduce dimensionality and mitigate overfitting.</li>
-                <li>Trained and benchmarked Logistic Regression, Random Forest, XGBoost, and LightGBM classifiers using stratified 10-fold cross-validation, optimizing hyperparameters via Bayesian search (Optuna) and evaluating with precision-recall AUC and calibrated probability thresholds to handle 8:1 class imbalance.</li>
-                <li>Delivered interpretable risk scores using SHAP value analysis, identifying top churn drivers (contract type, tenure, monthly charges) and presenting actionable retention strategies to stakeholders, reducing projected churn rate by 18% in A/B simulation.</li>
-            </ul>
-        </div>
-    </section>
+    </nav>
 
-    <section class="section" id="projects">
-        <h2>Projects</h2>
-        
-        <div class="item">
-            <h3><a href="https://github.com/DavranDev/LLM-based-RecSys">LLM-based RecSys via Preference-Based Optimization</a></h3>
-            <p>Fine-tuned the Qwen-2.5-7B model using LoRA for recommender systems, aligning LLM outputs with user preferences on the Movielens-32M and Goodreads datasets. Implemented DPO, ORPO, and KTO optimization techniques evaluated using Hit Ratio@1 and MRR metrics. ORPO boosted Hit Ratio@1 by up to 15% and MRR by up to 9% over the baseline.</p>
-            <div class="tech">Python · PyTorch · HuggingFace · LoRA · DPO · ORPO · KTO</div>
-        </div>
+    <div class="container">
 
-        <div class="item">
-            <h3><a href="http://34.41.234.161/">Campus Copilot - RAG Q&A Web System</a></h3>
-            <p>Designed and evaluated a document Q&A system for students. Built gold-standard test sets, measured retrieval precision and answer groundedness, and iterated on chunking/prompting based on error analysis. System abstains when evidence is insufficient to reduce hallucinations.</p>
-            <div class="tech">Python · LangChain · Evaluation · Error Analysis</div>
-        </div>
-        
-        <div class="item">
-            <h3><a href="https://github.com/DavranDev">Stock Returns Analysis — Time Series</a></h3>
-            <p>Analyzed S&P 500 stock returns using ARMA and GARCH models. Performed stationarity tests, fitted volatility models, and evaluated forecast accuracy. Identified regime changes and quantified prediction intervals for risk assessment.</p>
-            <div class="tech">Python · statsmodels · Time Series · Statistical Testing</div>
-        </div>
-        
-        <div class="item">
-            <h3><a href="https://github.com/DavranDev/LLM-Driven-Podcast-Generator">LLM Driven Podcast Generator</a></h3>
-            <p>Architected an autonomous, end-to-end content pipeline that orchestrates specialized LangChain agents powered by hybrid OpenAI and Groq models to transform unstructured data (PDF/PPTX) into naturalistic, multi-host dialogue. Implemented a production-grade audio synthesis engine using Neural TTS and DSP techniques, automating professional mixing, noise reduction, and dynamic range compression to achieve broadcast-quality output.</p>
-            <div class="tech">Python · PyTorch · LangChain · Pydub · OpenAI TTS</div>
-        </div>
-    </section>
+        <!-- EXPERIENCE -->
+        <section id="experience">
+            <div class="section-label">Experience</div>
 
-    <section class="section" id="skills">
-        <h2>Skills</h2>
-        
-        <div class="skills-group">
-            <h3>Languages</h3>
-            <div class="skills-list">Python, SQL (PostgreSQL), MATLAB</div>
-        </div>
+            <div class="exp-card">
+                <div class="exp-header">
+                    <div class="exp-role">Graduate Researcher</div>
+                    <div class="exp-date">Sep 2024 — Present</div>
+                </div>
+                <div class="exp-org">Texas A&M University, College Station, TX <span class="note">· Paper under review, AIED 2026</span></div>
+                <ul class="exp-bullets">
+                    <li>Benchmarked retrieval strategies (BM25, dense embeddings, hybrid re-ranking) across a university document corpus, evaluating precision@k and nDCG to select optimal pipeline configuration for a RAG-based student assistant platform.</li>
+                    <li>Built a multi-agent content processing pipeline that ingests PDFs, PPTX, and DOCX files, coordinating specialized modules for summarization, quiz generation, and quality validation, serving 5+ content types through a unified API.</li>
+                    <li>Developed a neuro-symbolic scheduling system combining LLM-based cognitive profiling with constraint optimization (Google OR-Tools CP-SAT), modeling ADHD-specific constraints like hyperfocus windows and cognitive fatigue to generate personalized academic schedules.</li>
+                    <li>Designed a FastAPI backend with PostgreSQL storage and REST integrations (Google Calendar, Canvas LMS), implementing JWT authentication and automated schedule recommendations with validated constraint satisfaction.</li>
+                </ul>
+            </div>
 
-        <div class="skills-group">
-            <h3>ML / NLP / CV</h3>
-            <div class="skills-list">PyTorch, TensorFlow/Keras, HuggingFace Transformers, LangChain, SpaCy, NLTK, OpenCV, YOLO, Scikit-learn, MLOps/LLMOps</div>
-        </div>
+            <div class="exp-card">
+                <div class="exp-header">
+                    <div class="exp-role">Data Science Fellow</div>
+                    <div class="exp-date">Feb 2024 — Jun 2024</div>
+                </div>
+                <div class="exp-org">Fellowship.ai, Remote</div>
+                <ul class="exp-bullets">
+                    <li>Conducted exploratory analysis on 50K+ telecom subscriber records using SQL and Pandas, segmenting churn patterns by contract type, tenure cohort, and monthly charge distribution to identify high-risk customer profiles and guide feature engineering strategy.</li>
+                    <li>Trained and benchmarked Logistic Regression, Random Forest, XGBoost, and LightGBM classifiers with Optuna hyperparameter optimization and stratified 10-fold cross-validation, selecting XGBoost (0.91 AUC-ROC) as the production candidate.</li>
+                    <li>Generated interpretable SHAP-based risk scores and presented tiered retention recommendations to stakeholders, projecting an 18% churn reduction for high-value at-risk segments based on simulated intervention scenarios.</li>
+                </ul>
+            </div>
 
-        <div class="skills-group">
-            <h3>Data & Backend</h3>
-            <div class="skills-list">FastAPI, Pandas, SciPy, Chroma, FAISS, PostgreSQL, MongoDB</div>
-        </div>
+            <div class="exp-card">
+                <div class="exp-header">
+                    <div class="exp-role">Research Assistant</div>
+                    <div class="exp-date">Aug 2022 — Jan 2024</div>
+                </div>
+                <div class="exp-org">Nazarbayev University, Astana, Kazakhstan</div>
+                <ul class="exp-bullets">
+                    <li>Extracted high-dimensional feature representations from 7 pretrained CNN and Vision Transformer architectures (ViT, EfficientNetB7, DenseNet201, ResNet50, VGG16, MobileNet, Xception) and trained classifiers on combined embeddings for medical X-ray spinal implant identification.</li>
+                    <li>Built a Variational Autoencoder to generate synthetic X-ray samples for data augmentation, expanding a limited labeled medical imaging dataset and improving downstream classification accuracy.</li>
+                    <li>Deployed the implant classification model as a Dockerized FastAPI service on Google Cloud Run, automating a workflow that reduced identification turnaround from hours to seconds.</li>
+                </ul>
+            </div>
+        </section>
 
-        <div class="skills-group">
-            <h3>Infrastructure</h3>
-            <div class="skills-list">Docker, Git, AWS (EC2), GCP (Cloud Run), Linux</div>
-        </div>
-    </section>
+        <!-- PROJECTS -->
+        <section id="projects">
+            <div class="section-label">Projects</div>
 
-    <section class="section" id="education">
-        <h2>Education</h2>
-        
-        <div class="item">
-            <h3>MS in Data Science</h3>
-            <div class="meta">Texas A&M University · Aug 2024 – May 2026 (Expected)</div>
-            <p>Coursework: Machine Learning, NLP, Statistical Learning, Time Series, Statistics for Finance, Reinforcement Learning</p>
-        </div>
-        
-        <div class="item">
-            <h3>BS in Electrical & Computer Engineering</h3>
-            <div class="meta">Nazarbayev University · Aug 2018 – Jun 2022</div>
-        </div>
-    </section>
+            <div class="project-grid">
+                <a class="project-card" href="https://github.com/DavranDev" target="_blank">
+                    <h3>Kaggle Otto Group Product Classification</h3>
+                    <p>Engineered 14 features from 93 anonymized count features across 62K+ samples. Built a 3-level stacked ensemble combining GPU-accelerated LightGBM, CatBoost, and RAPIDS cuML, reducing multi-class log-loss by 8.3% over the best single-model baseline.</p>
+                    <div class="project-tech">
+                        <span>Python</span>
+                        <span>LightGBM</span>
+                        <span>CatBoost</span>
+                        <span>cuML</span>
+                    </div>
+                    <div class="project-arrow">View on GitHub →</div>
+                </a>
 
-    <section class="section" id="contact">
-        <h2>Contact</h2>
-        <p class="bio" style="margin-bottom: 12px;">I am seeking Data Scientist roles where I can apply statistical thinking, design experiments, and build models that inform real decisions. Particularly interested in teams working on NLP, recommendations, or product analytics.</p>
-        <div class="contact-info">
-            <div class="contact-row">Email: <a href="mailto:davrandamkhan@tamu.edu">davrandamkhan@tamu.edu</a></div>
-            <div class="contact-row">LinkedIn: <a href="https://www.linkedin.com/in/davran-damkhan-5a0701156/">davran-damkhan</a></div>
-            <div class="contact-row">GitHub: <a href="https://github.com/DavranDev">DavranDev</a></div>
-            <div class="contact-row">Phone: 979-326-8680</div>
-        </div>
-    </section>
+                <a class="project-card" href="https://github.com/DavranDev/LLM-based-RecSys" target="_blank">
+                    <h3>LLM-based RecSys via Preference Optimization</h3>
+                    <p>Fine-tuned Qwen-2.5-7B with LoRA on Movielens-32M and Goodreads datasets. Compared DPO, ORPO, and KTO strategies — ORPO boosted Hit Ratio@1 by 15% and MRR by 9% over baseline.</p>
+                    <div class="project-tech">
+                        <span>PyTorch</span>
+                        <span>HuggingFace</span>
+                        <span>LoRA</span>
+                        <span>ORPO</span>
+                    </div>
+                    <div class="project-arrow">View on GitHub →</div>
+                </a>
 
-    <footer>
-        © 2025 Davran Damkhan
-    </footer>
+                <a class="project-card" href="http://34.41.234.161/" target="_blank">
+                    <h3>Campus Copilot — RAG Q&A System</h3>
+                    <p>Document Q&A system for students with gold-standard test sets, retrieval precision evaluation, and answer groundedness checks. System abstains when evidence is insufficient to reduce hallucinations.</p>
+                    <div class="project-tech">
+                        <span>LangChain</span>
+                        <span>Chroma</span>
+                        <span>FastAPI</span>
+                        <span>Evaluation</span>
+                    </div>
+                    <div class="project-arrow">View Live →</div>
+                </a>
+
+                <a class="project-card" href="https://github.com/DavranDev/LLM-Driven-Podcast-Generator" target="_blank">
+                    <h3>LLM-Driven Podcast Generator</h3>
+                    <p>Autonomous pipeline orchestrating LangChain agents to transform unstructured documents into multi-host dialogue with broadcast-quality audio synthesis using Neural TTS and DSP techniques.</p>
+                    <div class="project-tech">
+                        <span>LangChain</span>
+                        <span>OpenAI TTS</span>
+                        <span>Pydub</span>
+                    </div>
+                    <div class="project-arrow">View on GitHub →</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills">
+            <div class="section-label">Technical Skills</div>
+
+            <div class="skills-grid">
+                <div class="skill-label">Languages</div>
+                <div class="skill-value">Python, SQL (PostgreSQL)</div>
+
+                <div class="skill-label">ML / AI</div>
+                <div class="skill-value">PyTorch, TensorFlow/Keras, HuggingFace Transformers, Scikit-learn, XGBoost, LightGBM, LangChain, FAISS, Chroma</div>
+
+                <div class="skill-label">Data & Analytics</div>
+                <div class="skill-value">Pandas, NumPy, SciPy, Statsmodels, Matplotlib, Seaborn, Streamlit/Power BI, FastAPI</div>
+
+                <div class="skill-label">Infrastructure</div>
+                <div class="skill-value">Docker, Git, AWS (EC2), GCP (Cloud Run), PostgreSQL, Linux</div>
+            </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section id="education">
+            <div class="section-label">Education</div>
+
+            <div class="edu-card">
+                <div class="edu-header">
+                    <div class="edu-degree">MS in Data Science</div>
+                    <div class="edu-date">Aug 2024 — May 2026</div>
+                </div>
+                <div class="edu-school">Texas A&M University, College Station, TX</div>
+                <div class="edu-detail">GPA: 3.50 · Coursework: Machine Learning, NLP, Statistical Learning, Time Series, Reinforcement Learning</div>
+            </div>
+
+            <div class="edu-card">
+                <div class="edu-header">
+                    <div class="edu-degree">BS in Electrical & Computer Engineering</div>
+                    <div class="edu-date">Aug 2018 — Jun 2022</div>
+                </div>
+                <div class="edu-school">Nazarbayev University, Astana, Kazakhstan</div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="contact-block">
+                <div class="section-label">Get in touch</div>
+                <div class="contact-cta">Seeking Data Scientist roles where I can apply statistical thinking and build models that inform real decisions.</div>
+                <p class="contact-sub">Particularly interested in teams working on NLP, recommendations, or product analytics.</p>
+                <div class="contact-grid">
+                    <a href="mailto:davrandamkhan@tamu.edu">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        davrandamkhan@tamu.edu
+                    </a>
+                    <a href="https://www.linkedin.com/in/davran-damkhan-5a0701156/" target="_blank">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/DavranDev" target="_blank">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                        GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            © 2025 Davran Damkhan
+        </footer>
+    </div>
+
+    <script>
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', 
+                            link.getAttribute('href') === '#' + entry.target.id
+                        );
+                    });
+                }
+            });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+
+        sections.forEach(section => observer.observe(section));
+    </script>
 </body>
 </html>
