@@ -509,9 +509,9 @@
             <img src="img.png" alt="Davran Damkhan" class="hero-photo">
             <div class="hero-text">
                 <h1 class="hero-name fade-in">Davran Damkhan</h1>
-                <div class="hero-title fade-in">Data Scientist</div>
+                <div class="hero-title fade-in">Data Scientist · ML Engineer</div>
                 <p class="hero-bio fade-in">
-                    Data Science MS student at Texas A&M. My focus: define the right metric, run rigorous experiments and ship models that inform real decisions.
+                    Data Science MS student at Texas A&M, focused on recommender systems, ranking, and statistical modeling. I define the right metric, run rigorous experiments, and ship models that inform real decisions.
                 </p>
                 <div class="hero-links fade-in">
                     <a href="mailto:davrandamkhan@tamu.edu">
@@ -553,15 +553,14 @@
 
             <div class="exp-card">
                 <div class="exp-header">
-                    <div class="exp-role">Graduate Researcher</div>
+                    <div class="exp-role">Graduate ML Engineer / Researcher</div>
                     <div class="exp-date">Sep 2024 — Present</div>
                 </div>
-                <div class="exp-org">Texas A&M University, College Station, TX <span class="note">· Paper under review, AIED 2026</span></div>
+                <div class="exp-org">Texas A&M University — IGVC Lab, College Station, TX <span class="note">· Paper under review, AIED 2026</span></div>
                 <ul class="exp-bullets">
-                    <li>Benchmarked retrieval strategies (BM25, dense embeddings, hybrid re-ranking) across a university document corpus, evaluating precision@k and nDCG to select optimal pipeline configuration for a RAG-based student assistant platform.</li>
-                    <li>Built a multi-agent content processing pipeline that ingests PDFs, PPTX, and DOCX files, coordinating specialized modules for summarization, quiz generation, and quality validation, serving 5+ content types through a unified API.</li>
-                    <li>Developed a neuro-symbolic scheduling system combining LLM-based cognitive profiling with constraint optimization (Google OR-Tools CP-SAT), modeling ADHD-specific constraints like hyperfocus windows and cognitive fatigue to generate personalized academic schedules.</li>
-                    <li>Designed a FastAPI backend with PostgreSQL storage and REST integrations (Google Calendar, Canvas LMS), implementing JWT authentication and automated schedule recommendations with validated constraint satisfaction.</li>
+                    <li>Built and benchmarked a hybrid retrieval &amp; ranking pipeline (dense + BM25 with Reciprocal Rank Fusion) over 500+ documents, evaluating candidate-ranking strategies with precision@k and nDCG; RRF re-ranking improved answer relevance by 24% over a dense-only baseline.</li>
+                    <li>Developed an online personalization layer using contextual bandits (LinUCB, Thompson Sampling) to adaptively select retrieval parameters per session, framing exploration–exploitation as regret minimization and validating with offline replay evaluation.</li>
+                    <li>Engineered a multi-agent content pipeline in FastAPI with specialized summarization, generation, and quality-validation modules; deployed as a Dockerized service on GCP with CI/CD via GitHub Actions.</li>
                 </ul>
             </div>
 
@@ -572,22 +571,21 @@
                 </div>
                 <div class="exp-org">Fellowship.ai, Remote</div>
                 <ul class="exp-bullets">
-                    <li>Conducted exploratory analysis on 50K+ telecom subscriber records using SQL and Pandas, segmenting churn patterns by contract type, tenure cohort, and monthly charge distribution to identify high-risk customer profiles and guide feature engineering strategy.</li>
-                    <li>Trained and benchmarked Logistic Regression, Random Forest, XGBoost, and LightGBM classifiers with Optuna hyperparameter optimization and stratified 10-fold cross-validation, selecting XGBoost (0.91 AUC-ROC) as the production candidate.</li>
-                    <li>Generated interpretable SHAP-based risk scores and presented tiered retention recommendations to stakeholders, projecting an 18% churn reduction for high-value at-risk segments based on simulated intervention scenarios.</li>
+                    <li>Built an end-to-end churn-prediction pipeline on 50K+ telecom records: SQL extraction, feature engineering (rolling usage trends, charge-to-tenure ratios, support-call frequency), and training with stratified 10-fold cross-validation.</li>
+                    <li>Benchmarked Logistic Regression, Random Forest, XGBoost, and LightGBM with Optuna hyperparameter search; selected XGBoost (0.91 AUC-ROC, +12% over baseline) and produced SHAP-based interpretability reports for stakeholder review.</li>
+                    <li>Delivered SHAP-based risk scores into Power BI dashboards, enabling segment-level retention budget allocation projected to reduce churn by 18%.</li>
                 </ul>
             </div>
 
             <div class="exp-card">
                 <div class="exp-header">
-                    <div class="exp-role">Research Assistant</div>
-                    <div class="exp-date">Aug 2022 — Dec 2023</div>
+                    <div class="exp-role">ML Research Engineer</div>
+                    <div class="exp-date">Aug 2022 — Jan 2024</div>
                 </div>
                 <div class="exp-org">Nazarbayev University, Astana, Kazakhstan</div>
                 <ul class="exp-bullets">
-                    <li>Extracted high-dimensional feature representations from 7 pretrained CNN and Vision Transformer architectures (ViT, EfficientNetB7, DenseNet201, ResNet50, VGG16, MobileNet, Xception) and trained classifiers on combined embeddings for medical X-ray spinal implant identification.</li>
-                    <li>Built a Variational Autoencoder to generate synthetic X-ray samples for data augmentation, expanding a limited labeled medical imaging dataset and improving downstream classification accuracy.</li>
-                    <li>Deployed the implant classification model as a Dockerized FastAPI service on Google Cloud Run, automating a workflow that reduced identification turnaround from hours to seconds.</li>
+                    <li>Benchmarked feature representations from 7 pretrained architectures for image classification, selecting optimal model-classifier combinations via stratified k-fold cross-validation on 10K+ samples; trained a Variational Autoencoder for synthetic augmentation to correct class imbalance, improving minority-class F1 by 8%.</li>
+                    <li>Deployed the final classifier as a Dockerized FastAPI microservice on GCP Cloud Run with health checks and auto-scaling, serving real-time REST inference and reducing turnaround from hours to seconds.</li>
                 </ul>
             </div>
         </section>
@@ -597,21 +595,9 @@
             <div class="section-label">Projects</div>
 
             <div class="project-grid">
-                <a class="project-card" href="https://github.com/DavranDev/Otto-Product-Classification" target="_blank">
-                    <h3>Kaggle Otto Group Product Classification</h3>
-                    <p>Engineered 14 features from 93 anonymized count features across 62K+ samples. Built a 3-level stacked ensemble combining GPU-accelerated LightGBM, CatBoost, and RAPIDS cuML, reducing multi-class log-loss by 8.3% over the best single-model baseline.</p>
-                    <div class="project-tech">
-                        <span>Python</span>
-                        <span>LightGBM</span>
-                        <span>CatBoost</span>
-                        <span>cuML</span>
-                    </div>
-                    <div class="project-arrow">View on GitHub →</div>
-                </a>
-
                 <a class="project-card" href="https://github.com/DavranDev/LLM-based-RecSys" target="_blank">
                     <h3>LLM-based RecSys via Preference Optimization</h3>
-                    <p>Fine-tuned Qwen-2.5-7B with LoRA on Movielens-32M and Goodreads datasets. Compared DPO, ORPO, and KTO strategies — ORPO boosted Hit Ratio@1 by 15% and MRR by 9% over baseline.</p>
+                    <p>Fine-tuned Qwen-2.5-7B with LoRA (4-bit) on MovieLens-32M and Goodreads, comparing DPO, ORPO, and KTO for aligning recommendations with user taste. ORPO boosted Hit Ratio@1 by 15% and MRR by 9% over the base model, with experiments tracked in W&amp;B.</p>
                     <div class="project-tech">
                         <span>PyTorch</span>
                         <span>HuggingFace</span>
@@ -621,25 +607,35 @@
                     <div class="project-arrow">View on GitHub →</div>
                 </a>
 
-                <a class="project-card" href="http://34.41.234.161/" target="_blank">
-                    <h3>Campus Copilot — RAG Q&A System</h3>
-                    <p>Document Q&A system for students with gold-standard test sets, retrieval precision evaluation, and answer groundedness checks. System abstains when evidence is insufficient to reduce hallucinations.</p>
+                <div class="project-card">
+                    <h3>Generative Recommendation with Semantic IDs</h3>
+                    <p>Investigated Semantic ID integration strategies (residual-quantized tokenization) for injecting collaborative signals into LLM-based recommenders, analyzing catastrophic-forgetting trade-offs and evaluating ranking quality with Hit Ratio and NDCG on standard benchmarks.</p>
                     <div class="project-tech">
-                        <span>LangChain</span>
-                        <span>Chroma</span>
-                        <span>FastAPI</span>
-                        <span>Evaluation</span>
+                        <span>PyTorch</span>
+                        <span>HuggingFace</span>
+                        <span>RQ-VAE</span>
+                        <span>Ranking</span>
                     </div>
-                    <div class="project-arrow">View Live →</div>
-                </a>
+                </div>
 
-                <a class="project-card" href="https://github.com/DavranDev/LLM-Driven-Podcast-Generator" target="_blank">
-                    <h3>LLM-Driven Podcast Generator</h3>
-                    <p>Autonomous pipeline orchestrating LangChain agents to transform unstructured documents into multi-host dialogue with broadcast-quality audio synthesis using Neural TTS and DSP techniques.</p>
+                <div class="project-card">
+                    <h3>Financial Time Series Modeling (JPM Returns)</h3>
+                    <p>Applied ARMA/GARCH-family models to JPMorgan daily returns with formal hypothesis testing (ADF, Ljung-Box) and information-criterion model selection; identified TGARCH as best fit due to leverage effects in volatility clustering.</p>
                     <div class="project-tech">
-                        <span>LangChain</span>
-                        <span>OpenAI TTS</span>
-                        <span>Pydub</span>
+                        <span>Python</span>
+                        <span>Statsmodels</span>
+                        <span>SciPy</span>
+                    </div>
+                </div>
+
+                <a class="project-card" href="https://github.com/DavranDev/Otto-Group-Classification" target="_blank">
+                    <h3>GPU-Accelerated Stacked Ensemble</h3>
+                    <p>Engineered 14 features from 93 anonymized attributes across 62K+ samples and built a 3-level stacked ensemble with stratified 5-fold CV on GPU (RAPIDS cuML), reducing multi-class log-loss by 8.3% over the best single-model baseline.</p>
+                    <div class="project-tech">
+                        <span>LightGBM</span>
+                        <span>CatBoost</span>
+                        <span>XGBoost</span>
+                        <span>cuML</span>
                     </div>
                     <div class="project-arrow">View on GitHub →</div>
                 </a>
@@ -652,16 +648,25 @@
 
             <div class="skills-grid">
                 <div class="skill-label">Languages</div>
-                <div class="skill-value">Python, SQL (PostgreSQL)</div>
+                <div class="skill-value">Python, SQL (PostgreSQL), C++, Bash</div>
 
-                <div class="skill-label">ML / AI</div>
-                <div class="skill-value">PyTorch, TensorFlow/Keras, HuggingFace Transformers, Scikit-learn, XGBoost, LightGBM, LangChain, FAISS, Chroma</div>
+                <div class="skill-label">ML / DL</div>
+                <div class="skill-value">PyTorch, TensorFlow/Keras, Scikit-learn, XGBoost, LightGBM, CatBoost, RAPIDS cuML, HuggingFace Transformers</div>
 
-                <div class="skill-label">Data & Analytics</div>
-                <div class="skill-value">Pandas, NumPy, SciPy, Statsmodels, Matplotlib, Seaborn, Streamlit/Power BI, FastAPI</div>
+                <div class="skill-label">RecSys & Ranking</div>
+                <div class="skill-value">Collaborative Filtering, Learning-to-Rank, Preference Optimization (DPO/ORPO/KTO), Contextual Bandits (LinUCB/Thompson Sampling), Semantic IDs, Embeddings, FAISS, BM25, Reciprocal Rank Fusion</div>
 
-                <div class="skill-label">Infrastructure</div>
-                <div class="skill-value">Docker, Git, AWS (EC2), GCP (Cloud Run), PostgreSQL, Linux</div>
+                <div class="skill-label">Stats & Experiments</div>
+                <div class="skill-value">Hypothesis Testing, A/B Testing, Time-Series (ARMA/GARCH), Cross-Validation, SHAP, Optuna, MLflow, Weights & Biases</div>
+
+                <div class="skill-label">LLM & NLP</div>
+                <div class="skill-value">RAG Pipelines, LangChain, ChromaDB, LoRA/QLoRA Fine-tuning, Prompt Engineering, OpenAI API</div>
+
+                <div class="skill-label">MLOps & Cloud</div>
+                <div class="skill-value">Docker, FastAPI, REST APIs, Git, GitHub Actions (CI/CD), GCP (Cloud Run, Vertex AI), AWS (S3, EC2), Linux</div>
+
+                <div class="skill-label">Data & Viz</div>
+                <div class="skill-value">Pandas, NumPy, SciPy, Statsmodels, Matplotlib, Seaborn, Plotly, Streamlit, Power BI</div>
             </div>
         </section>
 
@@ -675,7 +680,7 @@
                     <div class="edu-date">Aug 2024 — May 2026</div>
                 </div>
                 <div class="edu-school">Texas A&M University, College Station, TX</div>
-                <div class="edu-detail">GPA: 3.50 · Coursework: Machine Learning, NLP, Statistical Learning, Time Series, Reinforcement Learning</div>
+                <div class="edu-detail">GPA: 3.50 · Coursework: Machine Learning, Deep Learning, Information Retrieval & Recommender Systems, Statistical Modeling, Reinforcement Learning, NLP</div>
             </div>
 
             <div class="edu-card">
@@ -691,8 +696,8 @@
         <section id="contact">
             <div class="contact-block">
                 <div class="section-label">Get in touch</div>
-                <div class="contact-cta">Seeking Data Scientist roles where I can apply statistical thinking and build models that inform real decisions.</div>
-                <p class="contact-sub">Particularly interested in teams working on NLP, recommendations, or product analytics.</p>
+                <div class="contact-cta">Seeking Data Scientist and ML Engineer roles where I can apply statistical thinking and build models that inform real decisions.</div>
+                <p class="contact-sub">Particularly interested in teams working on recommender systems, ranking, personalization, or experimentation.</p>
                 <div class="contact-grid">
                     <a href="mailto:davrandamkhan@tamu.edu">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -711,7 +716,7 @@
         </section>
 
         <footer>
-            © 2025 Davran Damkhan
+            © 2026 Davran Damkhan
         </footer>
     </div>
 
